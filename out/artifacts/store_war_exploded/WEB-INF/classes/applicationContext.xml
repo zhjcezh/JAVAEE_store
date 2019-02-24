@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd
+    http://www.springframework.org/schema/aop
+    http://www.springframework.org/schema/aop/spring-aop.xsd
+     http://www.springframework.org/schema/tx
+        http://www.springframework.org/schema/tx/spring-tx.xsd
+">
+
+    <!--导入hibernate相关配置-->
+    <import resource="hibernateApplication.xml"/>
+
+    <!--login -->
+    <bean id="loginAction" class="com.cfeng.action.LoginAction" scope="prototype">
+        <property name="loginService" ref="loginService"/>
+    </bean>
+    <bean id="loginService" class="com.cfeng.service.impl.LoginServiceImpl" >
+        <property name="userDao" ref="userDao"/>
+    </bean>
+    <bean id="userDao" class="com.cfeng.dao.impl.UserDaoImpl" >
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+
+    <bean id="bookAction" class="com.cfeng.action.BookAction" scope="prototype">
+        <property name="bookService" ref="bookService"/>
+    </bean>
+    <bean id="bookService" class="com.cfeng.service.impl.BookServiceImpl" >
+        <property name="bookDao" ref="bookDao"/>
+    </bean>
+    <bean id="bookDao" class="com.cfeng.dao.impl.BookDaoImpl" >
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+
+
+
+    <bean  id="categoryAction" class="com.cfeng.action.CategoryAction" scope="prototype">
+        <property name="categoryService" ref="categoryService"/>
+    </bean>
+    <bean id="categoryService" class="com.cfeng.service.impl.CategoryServiceImpl">
+        <property name="categoryDao" ref="categoryDao"/>
+    </bean>
+    <bean id="categoryDao" class="com.cfeng.dao.impl.CategoryDaoImpl">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+
+    <bean id="userAction" class="com.cfeng.action.UserAction" scope="prototype">
+        <property name="userServer" ref="userServer"/>
+    </bean>
+    <bean id="userServer" class="com.cfeng.service.impl.UserServerImpl">
+        <property name="userDao" ref="userDao"/>
+    </bean>
+
+</beans>

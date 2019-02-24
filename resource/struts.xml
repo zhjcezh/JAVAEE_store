@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+        "http://struts.apache.org/dtds/struts-2.5.dtd">
+<struts>
+
+    <!--<constant name="struts.devMode" value="true"/>-->
+    <package name="struts" extends="struts-default">
+        <action name="loginAciton_*" class="loginAction" method="{1}">
+            <result name="login">mgr_login.jsp</result>
+            <result name="success">index.jsp</result>
+            <allowed-methods>login</allowed-methods>
+        </action>
+        <action name="book_*" class="bookAction" method="{1}">
+            <result name="list">/mgr_main.jsp</result>
+            <result name="listAction" type="redirectAction">book_pageList.action</result>
+            <result name="edit">/mgr_edit_article.jsp</result>
+            <result name="alllist">goods_list.jsp</result>
+            <result name="detail">shopdetail.jsp</result>
+            <allowed-methods>pageList,add,delete,edit,update,all,detail</allowed-methods>
+        </action>
+
+        <action name="category_*" class="categoryAction" method="{1}">
+            <result name="list">/mgr_category.jsp</result>
+            <result name="listAction" type="redirectAction">category_list.action</result>
+            <allowed-methods>add,list,updateUI,update,delete,getCategory</allowed-methods>
+        </action>
+
+        <action name="user_*" class="userAction" method="{1}">
+            <result name="list">/mgr_account.jsp</result>
+            <result name="listAction" type="redirectAction">user_list.action</result>
+            <allowed-methods>list,add,updateUI,update,delete</allowed-methods>
+        </action>
+    </package>
+
+</struts>
